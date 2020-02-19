@@ -1,5 +1,5 @@
 # boiler_projects
-boiler with server/web/mobile and jsonwebtoken
+boiler with "server jsonwebtoken" for web/mobile/desktop
 
 sequelize init
 
