@@ -1,24 +1,19 @@
 const jwt = require("jsonwebtoken");
-
 module.exports = (req, res, next) => {
-  const authHeader = req.header("x-auth-acc");
+  const authHeader = req.headers["x-auth-acc"];
 
-  if (!authHeader) return res.status(401).json({ error: "error!" });
+  if (!authHeader) return next();
 
   const parts = authHeader.split(" ");
 
-  if (!parts.lenght === 2) return res.status(401).json({ error: "error!" });
+  if (!parts.lenght === 2) return next();
 
   const [scheme, token] = parts;
 
-  if (!/^Bearer$/i.test(scheme)) {
-    return res.status(401).json({ error: "error!" });
-  }
+  if (!/^Bearer$/i.test(scheme)) return next();
 
-  jwt.verify(token, process.env.SECRET, (err, decoded) => {
-    if (err) return res.status(401).json({ error: "error!" });
-
-    req.user = decoded.payload;
+  jwt.verify(token, "process.env.SECRET", (err, decoded) => {
+    req.user = decoded;
     return next();
   });
 };
