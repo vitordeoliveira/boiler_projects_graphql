@@ -1,6 +1,6 @@
 const { UsersType } = require("../Types");
 const { GraphQLList } = require("graphql");
-const { Users } = require("../../../models");
+const { Users } = require("../../../database/models");
 const UsersQuery = {
   me: {
     type: UsersType,

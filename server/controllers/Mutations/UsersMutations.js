@@ -1,5 +1,5 @@
 const { GraphQLString, GraphQLInt, GraphQLNonNull } = require("graphql");
-const { Users } = require("../../../models");
+const { Users } = require("../../../database/models");
 const { UsersType } = require("../Types");
 const bcrypt = require("bcryptjs");
 
